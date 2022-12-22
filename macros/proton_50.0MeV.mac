@@ -1,0 +1,28 @@
+#Set verbosity
+	/tracking/verbose 0
+	/process/em/verbose 0
+	/run/verbose 1
+
+#geometry information
+	/geometry/voxelSideLength 3.0 mm
+
+#Initialize the run manager
+	/run/initialize
+
+#source information
+	/gps/particle proton
+	/gps/energy 50.0 MeV
+
+
+	/gps/direction 0 0 -1
+	/gps/pos/type Plane
+	/gps/pos/shape Rectangle
+	#/gps/pos/rot1 0 0 1
+	#/gps/pos/rot2 1 0 0
+	/gps/pos/halfx 1.5 mm
+	/gps/pos/halfy 1.5 mm
+	/gps/pos/centre 0 0 1.5 mm
+
+/run/beamOn 100
+
+/sim/scorer/spheres/save ./output_nottracked/test/
