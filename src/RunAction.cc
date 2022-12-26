@@ -1,64 +1,38 @@
+//This program
 #include "DetectorConstruction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
 //Extern
 #include "CommandLineParser.hh"
 //Geant4
-#include "G4Run.hh"
-#include "G4ParticleDefinition.hh"
-#include "G4RunManager.hh"
-#include "G4Threading.hh"
+#include "G4AnalysisManager.hh"
+#include "G4SystemOfUnits.hh"
 
-RunAction::RunAction() : G4UserRunAction() { }
+RunAction::RunAction() : G4UserRunAction() 
+{ 
+  auto analysisManager = G4AnalysisManager::Instance();
+  analysisManager->SetVerboseLevel(1);
+
+  //Create the output histogram
+  analysisManager->CreateH1("f(y)","Lineal energy spectrum", 256, 0., 1000*keV/um);
+}
+
 RunAction::~RunAction() { }
-
-//
-// Beginning of run action
-//
 
 void RunAction::BeginOfRunAction(const G4Run* run)
 {
-  bool sequential = (G4RunManager::GetRunManager()->GetRunManagerType() == G4RunManager::sequentialRM);
+  auto analysisManager = G4AnalysisManager::Instance();
 
-  if(isMaster && sequential == false ) //note that in sequential mode, BeginMaster will never be called. So put MT only things there
-  {
-    BeginMaster(run);
-  }
-  else BeginWorker(run);
+  G4String outputFileName = "testingOutput.root";
+  analysisManager->OpenFile(outputFileName);
 }
-
-void RunAction::BeginMaster(const G4Run*)
-{
-  //ROOT::EnableThreadSafety(); //make ROOT thread safe from the main thread. ROOT will crash without this.
-}
-
-void RunAction::BeginWorker(const G4Run*)
-{
-
-}
-
-//
-// End of run action
-//
 
 void RunAction::EndOfRunAction(const G4Run* run)
 {
-  bool sequential = (G4RunManager::GetRunManager()->GetRunManagerType() == G4RunManager::sequentialRM);
+  auto analysisManager = G4AnalysisManager::Instance();
 
-  if(isMaster && sequential == false)
-  {
-    EndMaster(run);
-  }
-  else
-  {
-    EndWorker(run);
-  }
+  //According to documentation: https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Analysis/managers.html#parallel-processing
+  //Analysis Manager->Write() on individual threads will merge the histograms. Very useful.
+  analysisManager->Write();
+  analysisManager->CloseFile();
 }
-
-void RunAction::EndMaster(const G4Run*) { }
-
-void RunAction::EndWorker(const G4Run*)
-{
-
-}
-

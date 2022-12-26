@@ -85,24 +85,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   return ConstructDetector();
 }
 
-void DetectorConstruction::SetSideLength(G4double sidelength)
-{
-  sideLength = sidelength;
-  sideLengthInitialized = true;
-}
-
-void DetectorConstruction::SetSphereDiameter(G4double sphereDiam)
-{
-  sphereDiameter = sphereDiam;
-  sphereDiameterInitialized = true;
-}
-
-
-G4double DetectorConstruction::GetSideLength()
-{
-  return sideLength;
-}
-
 G4VPhysicalVolume* DetectorConstruction::ConstructDetector()
 {
   //Define water material
@@ -125,7 +107,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructDetector()
                                   0);      //copy number
 
   tiledSpheres = new SphereParameterisation(sideLength/2, sphereDiameter);
-  tiles_logical = tiledSpheres->Placement(logicWorld,H2O,H2O,G4Color(0.0, 1.0, 0.0, 0.5));
+  tiledSpheresLogical = tiledSpheres->Placement(logicWorld,H2O,H2O,G4Color(0.0, 1.0, 0.0, 0.5));
   
   return physiWorld;
 }
@@ -140,5 +122,5 @@ void DetectorConstruction::ConstructSDandField()
     auto sensitive_detector_manager = G4SDManager::GetSDMpointer();
     sensitive_detector_manager->AddNewDetector(sensitive_detector);
 
-    tiles_logical->SetSensitiveDetector(sensitive_detector); 
+    tiledSpheresLogical->SetSensitiveDetector(sensitive_detector); 
 }

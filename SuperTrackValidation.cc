@@ -38,7 +38,7 @@ int main(int argc,char** argv)
   G4Random::setTheSeed(stol(parser->GetCommandIfActive("-seed")->GetOption())); 
 
   //Set up RunManager depending on whether multithreading is enabled
-/*#ifdef G4MULTITHREADED
+#ifdef G4MULTITHREADED
   G4MTRunManager* runManager= new G4MTRunManager;
   if ((commandLine = parser->GetCommandIfActive("-mt")))
   {
@@ -55,18 +55,14 @@ int main(int argc,char** argv)
   }
 #else
   G4RunManager* runManager = new G4RunManager();
-#endif*/
-
-  G4RunManager* runManager = new G4RunManager();
-
-  
+#endif
 
   // Set mandatory user initialization classes
   runManager->SetUserInitialization(new DetectorConstruction);
   runManager->SetUserInitialization(new PhysicsList);
   runManager->SetUserInitialization(new ActionInitialization());
 
-  // Get the pointer to the User Interface manager
+  
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
   //Run the macro file
@@ -149,8 +145,6 @@ void Parse(int& argc, char** argv)
 #ifdef G4MULTITHREADED
   parser->AddCommand("-mt",Command::WithOption,"Launch in MT mode (events computed in parallel)","");
 #endif
-
-
 
   // If -h or --help is given in option : print help and exit
   if (parser->Parse(argc, argv) != 0) 

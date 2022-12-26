@@ -12,26 +12,26 @@ public:
 
 	DetectorConstruction();
 	virtual ~DetectorConstruction();
-
 	virtual G4VPhysicalVolume* Construct();
 
-	void SetSideLength(G4double sidelength);
-	void SetSphereDiameter(G4double sphereDiam);
-	G4double GetSideLength();
-
-                         
+	void SetSideLength(G4double sidelength) { sideLength = sidelength; sideLengthInitialized = true; };
+	void SetSphereDiameter(G4double sphereDiam) { sphereDiameter = sphereDiam; sphereDiameterInitialized = true; };
+	G4double GetSideLength() {return sideLength;};
+                    
 private:
+
 	G4VPhysicalVolume* ConstructDetector();
 	void ConstructSDandField();    
-
-    DetectorConstructionMessenger* pMessenger;
-    SphereParameterisation* tiledSpheres;
 	
 	G4double sideLength;
-	G4bool sideLengthInitialized;
 	G4double sphereDiameter;
 	G4bool sphereDiameterInitialized;
+	G4bool sideLengthInitialized;
 
-	G4LogicalVolume* tiles_logical;
+	SphereParameterisation* tiledSpheres;
+	G4LogicalVolume* tiledSpheresLogical;
+
+	DetectorConstructionMessenger* pMessenger;
+    
 };
 

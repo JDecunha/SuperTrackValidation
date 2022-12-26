@@ -4,7 +4,8 @@
 	/run/verbose 1
 
 #geometry information
-	/geometry/voxelSideLength 3.0 mm
+	/geometry/voxelSideLength 5 um
+	/geometry/sphereDiameter 1 um
 
 #Initialize the run manager
 	/run/initialize
@@ -22,6 +23,6 @@
 	/gps/pos/halfy 1.5 mm
 	/gps/pos/centre 0 0 1.5 mm
 
-/run/beamOn 100
+/run/beamOn 2
 
 /sim/scorer/spheres/save ./output_nottracked/test/
