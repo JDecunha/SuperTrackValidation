@@ -1,4 +1,3 @@
-//MicroTrackGenerator
 #include "DetectorConstruction.hh"
 #include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
