@@ -1,14 +1,8 @@
 #include "DetectorConstruction.hh"
-#include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
 //Extern
 #include "CommandLineParser.hh"
-//ROOT
-#include"TROOT.h"
-#include "TObject.h"
-#include "TFile.h"
-#include "TTree.h"
 //Geant4
 #include "G4Run.hh"
 #include "G4ParticleDefinition.hh"
@@ -35,7 +29,7 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 
 void RunAction::BeginMaster(const G4Run*)
 {
-  ROOT::EnableThreadSafety(); //make ROOT thread safe from the main thread. ROOT will crash without this.
+  //ROOT::EnableThreadSafety(); //make ROOT thread safe from the main thread. ROOT will crash without this.
 }
 
 void RunAction::BeginWorker(const G4Run*)

@@ -11,13 +11,6 @@ find_package(Geant4 REQUIRED)
 include(${Geant4_USE_FILE}) #include the Geant4 CMakeLists
 
 ###
-### Find and include ROOT libraries
-###
-
-find_package(ROOT 6.24 CONFIG REQUIRED)
-include("${ROOT_USE_FILE}") #include the ROOT CMakelists which defines $ROOT_LIBRARIES
-
-###
 ### Configure executable and in-project libraries
 ###
 

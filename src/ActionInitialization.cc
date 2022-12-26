@@ -2,7 +2,6 @@
 #include "ActionInitialization.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
-#include "EventAction.hh"
 #include "DetectorConstruction.hh"
 //Geant4
 #include "G4RunManager.hh"
@@ -25,7 +24,5 @@ void ActionInitialization::Build() const
 
   RunAction* runAction = new RunAction();
   SetUserAction(runAction);
-
-  SetUserAction(new EventAction());
 }  
 
