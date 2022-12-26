@@ -17,6 +17,13 @@ DetectorConstructionMessenger::DetectorConstructionMessenger(DetectorConstructio
     geometry_voxel_sidelength->SetParameterName("sidelength", false);
     geometry_voxel_sidelength->SetUnitCategory("Length");
     geometry_voxel_sidelength->AvailableForStates(G4State_PreInit);
+
+    // Set the voxel side length
+    geometry_sphere_diameter = new G4UIcmdWithADoubleAndUnit("/geometry/sphereDiameter", this);
+    geometry_sphere_diameter->SetGuidance("Set the diameter of the target spheres.");
+    geometry_sphere_diameter->SetParameterName("sphereDiam", false);
+    geometry_sphere_diameter->SetUnitCategory("Length");
+    geometry_sphere_diameter->AvailableForStates(G4State_PreInit);
 }
 
 
@@ -24,6 +31,7 @@ DetectorConstructionMessenger::~DetectorConstructionMessenger()
 {
     delete geometry_directory;
     delete geometry_voxel_sidelength;
+    delete geometry_sphere_diameter;
 }
 
 void DetectorConstructionMessenger::SetNewValue(G4UIcommand* command, G4String value)
@@ -31,6 +39,11 @@ void DetectorConstructionMessenger::SetNewValue(G4UIcommand* command, G4String v
     if (command == geometry_voxel_sidelength)
     {
       pDetectorConstruction->SetSideLength(geometry_voxel_sidelength->GetNewDoubleValue(value.c_str()));
+    }
+
+    if (command == geometry_sphere_diameter)
+    {
+      pDetectorConstruction->SetSphereDiameter(geometry_sphere_diameter->GetNewDoubleValue(value.c_str()));
     }
 }
 

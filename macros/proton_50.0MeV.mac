@@ -13,7 +13,6 @@
 	/gps/particle proton
 	/gps/energy 50.0 MeV
 
-
 	/gps/direction 0 0 -1
 	/gps/pos/type Plane
 	/gps/pos/shape Rectangle

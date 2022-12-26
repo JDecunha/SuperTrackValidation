@@ -19,6 +19,8 @@ DetectorConstruction::DetectorConstruction():G4VUserDetectorConstruction()
 {
   sideLength = 0;
   sideLengthInitialized = false;
+  sphereDiameter = 0;
+  sphereDiameterInitialized = false;
 
   pMessenger = new DetectorConstructionMessenger(this);
 }  
@@ -35,6 +37,13 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
       G4ExceptionDescription description;
       description << "Voxel side length was not defined. Set in macro before initialization with /geometry/voxelSideLength" << G4endl;
       G4Exception("DetectorConstruction::Construct()", "Voxel side length NDEF.", FatalException, description, "");
+  }
+
+  if (sphereDiameterInitialized == false)
+  {
+      G4ExceptionDescription description;
+      description << "Sphere diameter was not defined. Set in macro before initialization with /geometry/sphereDiameter" << G4endl;
+      G4Exception("DetectorConstruction::Construct()", "Sphere diameter NDEF.", FatalException, description, "");
   }
 
   /*//test the spherical parameterisation
@@ -82,6 +91,13 @@ void DetectorConstruction::SetSideLength(G4double sidelength)
   sideLengthInitialized = true;
 }
 
+void DetectorConstruction::SetSphereDiameter(G4double sphereDiam)
+{
+  sphereDiameter = sphereDiam;
+  sphereDiameterInitialized = true;
+}
+
+
 G4double DetectorConstruction::GetSideLength()
 {
   return sideLength;
@@ -108,7 +124,7 @@ G4VPhysicalVolume* DetectorConstruction::ConstructDetector()
                                   false,      //no boolean operation
                                   0);      //copy number
 
-  tiledSpheres = new SphereParameterisation(sideLength/2, 1000*um);
+  tiledSpheres = new SphereParameterisation(sideLength/2, sphereDiameter);
   tiles_logical = tiledSpheres->Placement(logicWorld,H2O,H2O,G4Color(0.0, 1.0, 0.0, 0.5));
   
   return physiWorld;

@@ -16,7 +16,9 @@ public:
 	virtual G4VPhysicalVolume* Construct();
 
 	void SetSideLength(G4double sidelength);
+	void SetSphereDiameter(G4double sphereDiam);
 	G4double GetSideLength();
+
                          
 private:
 	G4VPhysicalVolume* ConstructDetector();
@@ -27,6 +29,8 @@ private:
 	
 	G4double sideLength;
 	G4bool sideLengthInitialized;
+	G4double sphereDiameter;
+	G4bool sphereDiameterInitialized;
 
 	G4LogicalVolume* tiles_logical;
 };
