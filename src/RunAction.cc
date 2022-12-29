@@ -12,8 +12,6 @@
 #include "G4RunManager.hh"
 
 //These are static because they are shared by all threads
-//Static variables are defined at class level
-//TODO: See if it's possible for me to put these back into the class later
 static std::string outputName;
 static double minBin;
 static double maxBin;

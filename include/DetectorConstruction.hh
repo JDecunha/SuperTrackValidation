@@ -16,7 +16,9 @@ public:
 
 	void SetSideLength(G4double sidelength) { sideLength = sidelength; sideLengthInitialized = true; };
 	void SetSphereDiameter(G4double sphereDiam) { sphereDiameter = sphereDiam; sphereDiameterInitialized = true; };
-	G4double GetSideLength() {return sideLength;};
+
+	G4double GetSideLength() const {return sideLength;};
+	G4double GetSphereDiameter() const {return sphereDiameter;};
                     
 private:
 

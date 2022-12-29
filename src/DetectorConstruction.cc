@@ -114,10 +114,8 @@ G4VPhysicalVolume* DetectorConstruction::ConstructDetector()
 
 void DetectorConstruction::ConstructSDandField()
 {
-    G4int tempJobNumber = 0;
-
     auto sensitive_detector =
-        new SensitiveDetector("spheres", tempJobNumber, tiledSpheres->_totalSpheres);
+        new SensitiveDetector("spheres", tiledSpheres->_totalSpheres);
 
     auto sensitive_detector_manager = G4SDManager::GetSDMpointer();
     sensitive_detector_manager->AddNewDetector(sensitive_detector);

@@ -1,15 +1,15 @@
 //This project
 #include "SensitiveDetector.hh"
+#include "DetectorConstruction.hh"
 //Geant4
 #include "G4AnalysisManager.hh"
 #include "G4EventManager.hh"
+#include "G4RunManager.hh"
 
 SensitiveDetector::SensitiveDetector( const G4String& name
-                                    , G4int& job_number
-                                    , G4int& nReplicas)
+                                    , G4int nReplicas)
                  : G4VSensitiveDetector(name)
 {
-    job_number_ = job_number;
     replicas = nReplicas;
 
     // Initialise all of the accumulators.
@@ -21,12 +21,12 @@ SensitiveDetector::SensitiveDetector( const G4String& name
         //allocate memory for the temporary hit maps too
         event_energy.push_back(0.0);
     }
+
+    linealDenominator = 2./(3.*((static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction()))->GetSphereDiameter()));
 }
 
 
-SensitiveDetector::~SensitiveDetector()
-{
-}
+SensitiveDetector::~SensitiveDetector() {}
 
 
 G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory*)
@@ -54,7 +54,7 @@ void SensitiveDetector::EndOfEvent(G4HCofThisEvent* HCE)
 	//At the end of every event go through the volumes which were hit and record
 	for (auto index_hit : cell_hit_this_event)
 	{
-        analysisManager->FillH1(0, event_energy[index_hit]);
+        analysisManager->FillH1(0, (event_energy[index_hit]*linealDenominator));
 		event_energy[index_hit] = 0.0;
 	}
 
