@@ -5,6 +5,7 @@
 #include "G4AnalysisManager.hh"
 #include "G4EventManager.hh"
 #include "G4RunManager.hh"
+#include "G4SystemOfUnits.hh"
 
 SensitiveDetector::SensitiveDetector( const G4String& name
                                     , G4int nReplicas)
@@ -21,8 +22,10 @@ SensitiveDetector::SensitiveDetector( const G4String& name
         //allocate memory for the temporary hit maps too
         event_energy.push_back(0.0);
     }
-
-    linealDenominator = 2./(3.*((static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction()))->GetSphereDiameter()));
+    
+    //Sphere diam is converted from internal units into um.
+    double sphereDiam = ((static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction()))->GetSphereDiameter())/um;
+    linealDenominator = 2./(3.*sphereDiam);
 }
 
 
