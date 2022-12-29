@@ -2,7 +2,7 @@
 	/runAction/numBins 256
 	/runAction/minBin 0
 	/runAction/maxBin 1000
-	/runAction/outputName yello.root
+	/runAction/outputName yello
 
 #Set verbosity
 	/tracking/verbose 0
@@ -30,5 +30,3 @@
 	/gps/pos/centre 0 0 1.5 mm
 
 /run/beamOn 2
-
-/sim/scorer/spheres/save ./output_nottracked/test/

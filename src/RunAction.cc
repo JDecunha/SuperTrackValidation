@@ -11,6 +11,9 @@
 #include "G4SystemOfUnits.hh"
 #include "G4RunManager.hh"
 
+//These are static because they are shared by all threads
+//Static variables are defined at class level
+//TODO: See if it's possible for me to put these back into the class later
 static std::string outputName;
 static double minBin;
 static double maxBin;
@@ -24,7 +27,6 @@ void RunAction::SetOutputFilename(std::string oF) {outputName = oF;};
 RunAction::RunAction() : G4UserRunAction() 
 { 
   pMessenger = new RunActionMessenger(this);
-  std::cout << "yeyeyeyeye" << outputName << std::endl;
 }
 
 RunAction::~RunAction() { }
@@ -35,16 +37,17 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 
   bool sequential = (G4RunManager::GetRunManager()->GetRunManagerType() == G4RunManager::sequentialRM);
 
-  if(isMaster && sequential == false ) //note that in sequential mode, BeginMaster will never be called. So put MT only things there
+  //Pull the random seed for the filename from the main thread
+  if(isMaster)
   {
-    //Create the output name with the random seed on the main thread
     long long rndmSeed = G4Random::getTheSeed();
-    outputName = outputName + "_" std::to_string(rndmSeed);
-    
-    //Create the output histogram
-    analysisManager->CreateH1("f(y)","Lineal energy spectrum", numBins, minBin*(keV/um), maxBin*(keV/um));
+    outputName = outputName + "_" + std::to_string(rndmSeed) + ".root";
   }
-  analysisManager->SetNtupleMerging(true);
+
+  //Create the output histogram
+  analysisManager->CreateH1("f(y)","Lineal energy spectrum", numBins, minBin*(keV/um), maxBin*(keV/um));
+
+  analysisManager->SetNtupleMerging(true); //This also sets histogram merging
   analysisManager->OpenFile(outputName);
 }
 
