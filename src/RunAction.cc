@@ -5,16 +5,26 @@
 //Extern
 #include "CommandLineParser.hh"
 //Geant4
+#include "RunActionMessenger.hh"
+#include "Randomize.hh"
 #include "G4AnalysisManager.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4RunManager.hh"
+
+static std::string outputName;
+static double minBin;
+static double maxBin;
+static int numBins;
+
+void RunAction::SetNumBins(int nB) {numBins = nB;};
+void RunAction::SetMinBin(double minB) {minBin = minB;};
+void RunAction::SetMaxBin(double maxB) {maxBin = maxB;};
+void RunAction::SetOutputFilename(std::string oF) {outputName = oF;};
 
 RunAction::RunAction() : G4UserRunAction() 
 { 
-  auto analysisManager = G4AnalysisManager::Instance();
-  analysisManager->SetVerboseLevel(1);
-
-  //Create the output histogram
-  analysisManager->CreateH1("f(y)","Lineal energy spectrum", 256, 0., 1000*keV/um);
+  pMessenger = new RunActionMessenger(this);
+  std::cout << "yeyeyeyeye" << outputName << std::endl;
 }
 
 RunAction::~RunAction() { }
@@ -23,8 +33,19 @@ void RunAction::BeginOfRunAction(const G4Run* run)
 {
   auto analysisManager = G4AnalysisManager::Instance();
 
-  G4String outputFileName = "testingOutput.root";
-  analysisManager->OpenFile(outputFileName);
+  bool sequential = (G4RunManager::GetRunManager()->GetRunManagerType() == G4RunManager::sequentialRM);
+
+  if(isMaster && sequential == false ) //note that in sequential mode, BeginMaster will never be called. So put MT only things there
+  {
+    //Create the output name with the random seed on the main thread
+    long long rndmSeed = G4Random::getTheSeed();
+    outputName = outputName + "_" std::to_string(rndmSeed);
+    
+    //Create the output histogram
+    analysisManager->CreateH1("f(y)","Lineal energy spectrum", numBins, minBin*(keV/um), maxBin*(keV/um));
+  }
+  analysisManager->SetNtupleMerging(true);
+  analysisManager->OpenFile(outputName);
 }
 
 void RunAction::EndOfRunAction(const G4Run* run)

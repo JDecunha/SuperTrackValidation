@@ -1,3 +1,9 @@
+#Set histogram properties
+	/runAction/numBins 256
+	/runAction/minBin 0
+	/runAction/maxBin 1000
+	/runAction/outputName yello.root
+
 #Set verbosity
 	/tracking/verbose 0
 	/process/em/verbose 0

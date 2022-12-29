@@ -19,5 +19,4 @@ class DetectorConstructionMessenger : public G4UImessenger
 		G4UIdirectory* geometry_directory;
 		G4UIcmdWithADoubleAndUnit* geometry_voxel_sidelength;
 		G4UIcmdWithADoubleAndUnit* geometry_sphere_diameter;
-
 };

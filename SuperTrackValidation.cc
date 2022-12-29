@@ -20,6 +20,8 @@ CommandLineParser* parser(0);
 void Parse(int& argc, char** argv);
 void CheckCommandLineInputs(Command* commandLine);
 
+std::string globalOutputFilename;
+
 //Implementation
 int main(int argc,char** argv)
 {
