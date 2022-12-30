@@ -2,7 +2,7 @@
 	/runAction/numBins 3000
 	/runAction/minBin 0.01
 	/runAction/maxBin 300
-	/runAction/outputName proton_50MeV_test
+	/runAction/outputName ../output/proton_50MeV_test
 
 #Set verbosity
 	/tracking/verbose 0
