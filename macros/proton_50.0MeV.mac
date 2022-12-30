@@ -1,8 +1,8 @@
 #Set histogram properties
-	/runAction/numBins 256
-	/runAction/minBin 0
-	/runAction/maxBin 1000
-	/runAction/outputName yello
+	/runAction/numBins 3000
+	/runAction/minBin 0.01
+	/runAction/maxBin 300
+	/runAction/outputName proton_50MeV_test
 
 #Set verbosity
 	/tracking/verbose 0
@@ -25,8 +25,8 @@
 	/gps/pos/shape Rectangle
 	#/gps/pos/rot1 0 0 1
 	#/gps/pos/rot2 1 0 0
-	/gps/pos/halfx 1.5 mm
-	/gps/pos/halfy 1.5 mm
-	/gps/pos/centre 0 0 1.5 mm
+	/gps/pos/halfx 2.5 um
+	/gps/pos/halfy 2.5 um
+	/gps/pos/centre 0 0 2.5 um
 
-/run/beamOn 2
+/run/beamOn 100000
