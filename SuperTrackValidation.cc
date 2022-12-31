@@ -99,22 +99,6 @@ void CheckCommandLineInputs(Command* commandLine)
         G4Exception("MicroTrackGenerator::MicroTrackGenerator", "Macro file NDEF", FatalException, description, "");
   }
 
-  if ((commandLine = parser->GetCommandIfActive("-out")))
-  {
-    if (commandLine->GetOption() == "")
-    {
-        G4ExceptionDescription description;
-        description << "Output filename not given. Set with -out option at runtime" << G4endl;
-        G4Exception("MicroTrackGenerator::MicroTrackGenerator", "Output filename NDEF", FatalException, description, "");
-    }
-  }
-  else
-  {
-      G4ExceptionDescription description;
-      description << "Output filename not given. Set with -out option at runtime" << G4endl;
-      G4Exception("MicroTrackGenerator::MicroTrackGenerator", "Output filename NDEF", FatalException, description, "");  
-  }
-
   if ((commandLine = parser->GetCommandIfActive("-seed")))
   {
     if (commandLine->GetOption() == "")
