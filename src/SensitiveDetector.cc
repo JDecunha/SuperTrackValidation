@@ -23,9 +23,9 @@ SensitiveDetector::SensitiveDetector( const G4String& name
         event_energy.push_back(0.0);
     }
     
-    //Sphere diam is converted from internal units into um.
-    double sphereDiam = ((static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction()))->GetSphereDiameter())/um;
-    linealDenominator = 2./(3.*sphereDiam);
+    //Output will be MeV/mm which is sam as keV/um.
+    double sphereDiam = ((static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction()))->GetSphereDiameter());
+    linealDenominator = 3./(2.*sphereDiam);
 }
 
 
