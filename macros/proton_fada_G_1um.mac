@@ -1,0 +1,123 @@
+#Set histogram properties
+	/runAction/numBins 3000
+	/runAction/minBin 0.01
+	/runAction/maxBin 300
+	/runAction/outputName ../output/proton_100MeV_test
+
+#Set verbosity
+	/tracking/verbose 0
+	/process/em/verbose 0
+	/run/verbose 1
+
+#geometry information
+	/geometry/voxelSideLength 5 um
+	/geometry/sphereDiameter 1 um
+
+#Initialize the run manager
+	/run/initialize
+
+#source information
+	/gps/particle proton
+	/gps/ene/type User
+	/gps/hist/type energy
+
+	/gps/direction 0 0 -1
+	/gps/pos/type Plane
+	/gps/pos/shape Rectangle
+	#/gps/pos/rot1 0 0 1
+	#/gps/pos/rot2 1 0 0
+	/gps/pos/halfx 2.5 um
+	/gps/pos/halfy 2.5 um
+	/gps/pos/centre 0 0 2.5 um
+
+	/gps/hist/point 0.05 0
+	/gps/hist/point 0.15 8.95105e-06
+	/gps/hist/point 0.25 9.76916e-06
+	/gps/hist/point 0.35 1.16781e-05
+	/gps/hist/point 0.45 1.42527e-05
+	/gps/hist/point 0.55 1.72444e-05
+	/gps/hist/point 0.65 1.93298e-05
+	/gps/hist/point 0.75 2.22974e-05
+	/gps/hist/point 0.85 2.42224e-05
+	/gps/hist/point 0.95 2.51046e-05
+	/gps/hist/point 1.5 0.000171802
+	/gps/hist/point 2.5 0.000436003
+	/gps/hist/point 3.5 0.000640209
+	/gps/hist/point 4.5 0.000847302
+	/gps/hist/point 5.5 0.00104509
+	/gps/hist/point 6.5 0.0013048
+	/gps/hist/point 7.5 0.00159098
+	/gps/hist/point 8.5 0.00193779
+	/gps/hist/point 9.5 0.00242865
+	/gps/hist/point 10.5 0.00313928
+	/gps/hist/point 11.5 0.0046215
+	/gps/hist/point 12.5 0.00810246
+	/gps/hist/point 13.5 0.0173679
+	/gps/hist/point 14.5 0.0395739
+	/gps/hist/point 15.5 0.0837837
+	/gps/hist/point 16.5 0.149008
+	/gps/hist/point 17.5 0.209981
+	/gps/hist/point 18.5 0.215435
+	/gps/hist/point 19.5 0.154349
+	/gps/hist/point 20.5 0.0728757
+	/gps/hist/point 21.5 0.0223921
+	/gps/hist/point 22.5 0.00530326
+	/gps/hist/point 23.5 0.00190763
+	/gps/hist/point 24.5 0.00104493
+	/gps/hist/point 25.5 0.000441617
+	/gps/hist/point 26.5 0.000103771
+	/gps/hist/point 27.5 1.34378e-05
+	/gps/hist/point 28.5 7.42552e-07
+	/gps/hist/point 29.5 0
+	/gps/hist/point 30.5 0
+	/gps/hist/point 31.5 0
+	/gps/hist/point 32.5 0
+	/gps/hist/point 33.5 0
+	/gps/hist/point 34.5 7.28275e-09
+	/gps/hist/point 35.5 0
+	/gps/hist/point 36.5 0
+	/gps/hist/point 37.5 0
+	/gps/hist/point 38.5 0
+	/gps/hist/point 39.5 0
+	/gps/hist/point 40.5 0
+	/gps/hist/point 41.5 0
+	/gps/hist/point 42.5 0
+	/gps/hist/point 43.5 0
+	/gps/hist/point 44.5 0
+	/gps/hist/point 45.5 0
+	/gps/hist/point 46.5 0
+	/gps/hist/point 47.5 0
+	/gps/hist/point 48.5 0
+	/gps/hist/point 49.5 0
+	/gps/hist/point 50.5 0
+	/gps/hist/point 51.5 0
+	/gps/hist/point 52.5 0
+	/gps/hist/point 53.5 0
+	/gps/hist/point 54.5 0
+	/gps/hist/point 55.5 0
+	/gps/hist/point 56.5 0
+	/gps/hist/point 57.5 0
+	/gps/hist/point 58.5 0
+	/gps/hist/point 59.5 0
+	/gps/hist/point 60.5 0
+	/gps/hist/point 61.5 0
+	/gps/hist/point 62.5 0
+	/gps/hist/point 63.5 0
+	/gps/hist/point 64.5 0
+	/gps/hist/point 65.5 0
+	/gps/hist/point 66.5 0
+	/gps/hist/point 67.5 0
+	/gps/hist/point 68.5 0
+	/gps/hist/point 69.5 0
+	/gps/hist/point 70.5 0
+	/gps/hist/point 71.5 0
+	/gps/hist/point 72.5 0
+	/gps/hist/point 73.5 0
+	/gps/hist/point 74.5 0
+	/gps/hist/point 75.5 0
+	/gps/hist/point 76.5 0
+	/gps/hist/point 77.5 0
+	/gps/hist/point 78.5 0
+	/gps/hist/point 79.5 0
+
+/run/beamOn 10000000
