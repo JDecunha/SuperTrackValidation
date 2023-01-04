@@ -1,6 +1,6 @@
 #!/bin/bash
 ﻿
-#BSUB -W 3:30
+#BSUB -W 12:00
 #BSUB -o /rsrch3/home/radphys_rsch/jdecunha/SuperTrackValidation/run_logfiles
 #BSUB -cwd /rsrch3/home/radphys_rsch/jdecunha/SuperTrackValidation/runFiles
 #BSUB -q medium
