@@ -2,7 +2,7 @@
 	/runAction/numBins 3000
 	/runAction/minBin 0.01
 	/runAction/maxBin 300
-	/runAction/outputName ../output/proton_0_1MeV_1um
+	/runAction/outputName ../output/proton_1MeV_1um
 
 #Set verbosity
 	/tracking/verbose 0
@@ -18,7 +18,7 @@
 
 #source information
 	/gps/particle proton
-	/gps/energy 0.1 MeV
+	/gps/energy 1 MeV
 
 	/gps/direction 0 0 -1
 	/gps/pos/type Plane
@@ -29,4 +29,4 @@
 	/gps/pos/halfy 2.5 um
 	/gps/pos/centre 0 0 2.5 um
 
-/run/beamOn 2000000
+/run/beamOn 10000000
