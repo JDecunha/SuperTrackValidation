@@ -1,0 +1,32 @@
+#Set histogram properties
+	/runAction/numBins 3000
+	/runAction/minBin 0.01
+	/runAction/maxBin 300
+	/runAction/outputName ../output/proton_1MeV_100nm
+
+#Set verbosity
+	/tracking/verbose 0
+	/process/em/verbose 0
+	/run/verbose 1
+
+#geometry information
+	/geometry/voxelSideLength 5 um
+	/geometry/sphereDiameter 100 nm
+
+#Initialize the run manager
+	/run/initialize
+
+#source information
+	/gps/particle proton
+	/gps/energy 1 MeV
+
+	/gps/direction 0 0 -1
+	/gps/pos/type Plane
+	/gps/pos/shape Rectangle
+	#/gps/pos/rot1 0 0 1
+	#/gps/pos/rot2 1 0 0
+	/gps/pos/halfx 2.5 um
+	/gps/pos/halfy 2.5 um
+	/gps/pos/centre 0 0 2.5 um
+
+/run/beamOn 1000000
