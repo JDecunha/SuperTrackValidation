@@ -105,20 +105,11 @@ G4VPhysicalVolume* DetectorConstruction::ConstructDetector()
                                   0,      //its mother  volume
                                   false,      //no boolean operation
                                   0);      //copy number
-
-  tiledSpheres = new SphereParameterisation(sideLength/2, sphereDiameter);
-  tiledSpheresLogical = tiledSpheres->Placement(logicWorld,H2O,H2O,G4Color(0.0, 1.0, 0.0, 0.5));
   
   return physiWorld;
 }
 
 void DetectorConstruction::ConstructSDandField()
 {
-    auto sensitive_detector =
-        new SensitiveDetector("spheres", tiledSpheres->_totalSpheres);
 
-    auto sensitive_detector_manager = G4SDManager::GetSDMpointer();
-    sensitive_detector_manager->AddNewDetector(sensitive_detector);
-
-    tiledSpheresLogical->SetSensitiveDetector(sensitive_detector); 
 }

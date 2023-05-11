@@ -1,4 +1,4 @@
-//MicroTrackGenerator
+//This project
 #include "ActionInitialization.hh"
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
