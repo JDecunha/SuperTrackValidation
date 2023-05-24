@@ -39,6 +39,10 @@ SteppingAction::SteppingAction() : G4UserSteppingAction()
 
   sphereID_edepPair.reserve(1e6);
 
+  // std::cout << "Scoring region half length: " << scoringRegionHalfLength << std::endl;
+  // std::cout << "Sphere radius: " << sphereRadius << std::endl;
+  // std::cout << "greatestSphereOffset: " << greatestSphereOffset << std::endl;
+
 }
 
 SteppingAction::~SteppingAction(){ }
