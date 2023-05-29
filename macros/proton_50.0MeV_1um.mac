@@ -2,7 +2,7 @@
 	/runAction/numBins 3000
 	/runAction/minBin 0.01
 	/runAction/maxBin 300
-	/runAction/outputName ../output/proton_50MeV_100nm
+	/runAction/outputName ../output/proton_50MeV_1um
 
 #Set verbosity
 	/tracking/verbose 0
@@ -11,7 +11,7 @@
 
 #geometry information
 	/geometry/voxelSideLength 5 um
-	/geometry/sphereDiameter 100 nm
+	/geometry/sphereDiameter 1 um
 
 #Initialize the run manager
 	/run/initialize
