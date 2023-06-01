@@ -82,7 +82,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) //Save the position 
       long long zIndex = llrint((z-greatestSphereOffset)/sphereDiameter);
 
       //Determine the Index of the sphere hit
-      long long sphereHitIndex = xIndex + yIndex*numSpheresLinear+ zIndex*numSpheresLinear*numSpheresLinear; //Keep in mind that for the index it starts counting at zero
+      long long sphereHitIndex = xIndex + (yIndex*numSpheresLinear) + (zIndex*numSpheresLinear*numSpheresLinear); //Keep in mind that for the index it starts counting at zero
 
       //Add to the output vector
       sphereID_edepPair.push_back(std::pair<long long, double>(sphereHitIndex, edep/linealDenominator));
