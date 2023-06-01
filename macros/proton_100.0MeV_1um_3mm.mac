@@ -2,7 +2,7 @@
 	/runAction/numBins 3000
 	/runAction/minBin 0.01
 	/runAction/maxBin 300
-	/runAction/outputName ../output/proton_50MeV_1um_3mm
+	/runAction/outputName ../output/proton_100MeV_1um_3mm
 
 #Set verbosity
 	/tracking/verbose 0
@@ -29,4 +29,4 @@
 	/gps/pos/halfy 1.5 mm
 	/gps/pos/centre 0 0 1.5 mm
 
-/run/beamOn 100000
+/run/beamOn 10000

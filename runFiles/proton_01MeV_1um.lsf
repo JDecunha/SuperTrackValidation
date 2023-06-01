@@ -8,7 +8,7 @@
 #BSUB -R rusage[mem=165]
 #BSUB -n 28
 #BSUB -u jdecunha@mdanderson.org
-#BSUB -J proton_01MeV_STValidation_Test
+#BSUB -J proton_01MeV_1um
 
 source /rsrch3/home/radphys_rsch/jdecunha/configure.sh
 
